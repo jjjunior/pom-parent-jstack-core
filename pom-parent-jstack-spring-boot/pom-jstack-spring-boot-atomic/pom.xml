@@ -1,0 +1,192 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>br.com.jstack</groupId>
+        <artifactId>pom-parent-jstack-spring-boot</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>pom-jstack-spring-boot-atomic</artifactId>
+    <groupId>br.com.jstack</groupId>
+    <name>pom-jstack-spring-boot-atomic</name>
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>br.com.jstack</groupId>
+            <artifactId>pom-jstack-spring-boot-starter</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>native</id>
+            <properties>
+                <repackage.classifier>exec</repackage.classifier>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.junit.platform</groupId>
+                    <artifactId>junit-platform-launcher</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>component</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>create-build-info</id>
+                                <goals>
+                                    <goal>build-info</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                            </execution>
+                            <execution>
+                                <id>bootjar</id>
+                                <goals>
+                                    <goal>repackage</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- OpenAPI codegen -->
+                    <plugin>
+                        <groupId>org.openapitools</groupId>
+                        <artifactId>openapi-generator-maven-plugin</artifactId>
+
+                        <!-- Configs comuns a todas APIs geradas -->
+                        <configuration>
+                            <configOptions>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <basePackage>${package}</basePackage>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <configPackage>${package}.config</configPackage>
+                                <useJakartaEe>true</useJakartaEe>
+                                <useSpringBoot3>true</useSpringBoot3>
+                            </configOptions>
+                        </configuration>
+
+                        <!-- Geracao de APIs Adicionar uma execution para cada API a ser gerada -->
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <apiPackage>${package}.presentation</apiPackage>
+                                    <!--suppress UnresolvedMavenProperty -->
+                                    <modelPackage>${package}.presentation.representation</modelPackage>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                    </plugin>
+                </plugins>
+
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.openapitools</groupId>
+                            <artifactId>openapi-generator-maven-plugin</artifactId>
+                            <version>7.7.0</version>
+                            <configuration>
+                                <generatorName>spring</generatorName>
+                                <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <inputSpec>${openapi.generator.maven.plugin.inputSpec}</inputSpec>
+                                <configOptions>
+                                    <reactive>${openapi.generator.maven.plugin.configOptions.reactive}</reactive>
+                                    <delegatePattern>true</delegatePattern>
+                                    <documentationProvider>springdoc</documentationProvider>
+                                    <openApiNullable>false</openApiNullable>
+                                </configOptions>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-dependency-plugin</artifactId>
+                            <version>3.6.0</version>
+                            <executions>
+                                <execution>
+                                    <goals>
+                                        <goal>copy</goal>
+                                    </goals>
+                                    <phase>package</phase>
+                                    <configuration>
+                                        <artifactItems>
+                                            <artifactItem>
+                                                <groupId>${project.groupId}</groupId>
+                                                <artifactId>${project.artifactId}</artifactId>
+                                                <version>${project.version}</version>
+                                                <overWrite>true</overWrite>
+                                                <outputDirectory>docker</outputDirectory>
+                                                <destFileName>${project.artifactId}.jar</destFileName>
+                                            </artifactItem>
+                                        </artifactItems>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+
+            </build>
+        </profile>
+    </profiles>
+</project>
