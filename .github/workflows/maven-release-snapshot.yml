@@ -19,13 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configurar chave SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.ACTIONS_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-
       - name: Configurar Java
         uses: actions/setup-java@v4
         with:
@@ -36,14 +29,15 @@ jobs:
       - name: Executar Maven Release (main/master)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         run: |
-          git config user.name "pom-parent-jstack-core"
-          git config user.email "pom-parent-jstack-core@github.com"
-          git remote set-url origin pom-parent-jstack-core@github.com:jjjunior/pom-parent-jstack-core.git
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jjjunior/pom-parent-jstack-core.git
           mvn -B release:prepare release:perform -DscmCommentPrefix="[release] "
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy SNAPSHOT (outras branches)
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
         run: mvn deploy -B -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
