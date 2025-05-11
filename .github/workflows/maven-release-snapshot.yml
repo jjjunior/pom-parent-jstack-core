@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "pom-parent-jstack-core"
           git config user.email "pom-parent-jstack-core@github.com"
-          git remote set-url origin git@github.com:jjjunior/pom-parent-jstack-core.git
+          git remote set-url origin pom-parent-jstack-core@github.com:jjjunior/pom-parent-jstack-core.git
           mvn -B release:prepare release:perform -DscmCommentPrefix="[release] "
 
       - name: Deploy SNAPSHOT (outras branches)
