@@ -29,10 +29,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--
-            IMPORTANTE: Todas as dependências devem ser gerenciadas no pom.xml do
-            módulo pom-unified-core-dependencies.
-            -->
             <dependency>
                 <groupId>br.com.jstack</groupId>
                 <artifactId>pom-jstack-core-dependencies</artifactId>

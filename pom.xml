@@ -45,20 +45,18 @@
 
 
     <scm>
-        <connection>scm:git:github-actions@github.com:jjjunior/pom-parent-jstack-core.git</connection>
-        <developerConnection>scm:git:github-actions@github.com:jjjunior/pom-parent-jstack-core.git</developerConnection>
+        <connection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</connection>
+        <developerConnection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</developerConnection>
         <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
-        <tag>HEAD</tag> <!-- Isso é necessário para SNAPSHOT funcionar corretamente -->
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-
+        <maven.compiler.target>${java.version}</maven.compiler.target
         <springboot.version>3.4.5</springboot.version>
     </properties>
 
@@ -85,5 +83,22 @@
 
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>ci</id>
+            <activation>
+                <property>
+                    <name>env.CI</name>
+                </property>
+            </activation>
+            <scm>
+                <connection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</connection>
+                <developerConnection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</developerConnection>
+                <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
+                <tag>HEAD</tag>
+            </scm>
+        </profile>
+    </profiles>
 
 </project>
