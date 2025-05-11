@@ -36,8 +36,8 @@ jobs:
       - name: Executar Maven Release (main/master)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "pom-parent-jstack-core"
+          git config user.email "pom-parent-jstack-core@github.com"
           git remote set-url origin git@github.com:jjjunior/pom-parent-jstack-core.git
           mvn -B release:prepare release:perform -DscmCommentPrefix="[release] "
 
