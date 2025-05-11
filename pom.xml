@@ -34,12 +34,12 @@
         <repository>
             <id>jstack-repository</id>
             <name>JStack Releases</name>
-            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core/releases</url>
+            <url>https://maven.pkg.github.com/jjjunior</url>
         </repository>
         <snapshotRepository>
             <id>jstack-repository</id>
             <name>JStack Releases</name>
-            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core/snapshots</url>
+            <url>https://maven.pkg.github.com/jjjunior</url>
         </snapshotRepository>
     </distributionManagement>
 
