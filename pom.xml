@@ -32,10 +32,15 @@
 
     <distributionManagement>
         <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core</url>
+            <id>jstack-repository</id>
+            <name>JStack Releases</name>
+            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core/releases</url>
         </repository>
+        <snapshotRepository>
+            <id>jstack-repository</id>
+            <name>JStack Releases</name>
+            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
 
 

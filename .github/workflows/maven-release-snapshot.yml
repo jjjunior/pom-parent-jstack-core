@@ -1,5 +1,5 @@
 name: maven-release-snapshot.yml
-# Descrição: Este arquivo de workflow do GitHub Actions é responsável por fazer o deploy de um projeto Java utilizando Maven.
+
 on:
   push:
     branches:
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Necessário para o maven-release-plugin
+          fetch-depth: 0
 
       - name: Configurar chave SSH
         run: |
@@ -33,6 +33,19 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo '<settings>
+            <servers>
+              <server>
+                <id>your-repo-id</id>
+                <username>${{ secrets.REPO_USERNAME }}</username>
+                <password>${{ secrets.REPO_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>' > ~/.m2/settings.xml
+
       - name: Executar Maven Release (main/master)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         run: |
@@ -42,4 +55,4 @@ jobs:
 
       - name: Deploy SNAPSHOT (outras branches)
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
-        run: mvn deploy -B -DskipTests
+        run: mvn deploy -B -DskipTests -X
