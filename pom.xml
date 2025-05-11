@@ -45,10 +45,10 @@
 
 
     <scm>
-        <connection>scm:git:git://github.com/jjjunior/pom-parent-jstack-core.git</connection>
-        <developerConnection>scm:git:ssh://github.com/jjjunior/pom-parent-jstack-core.git</developerConnection>
-        <url>https://github.com/jjjunior//pom-parent-jstack-core</url>
-        <tag>v0.0.2</tag>
+        <connection>scm:git:git@github.com:jjjunior/pom-parent-jstack-core.git</connection>
+        <developerConnection>scm:git:git@github.com:jjjunior/pom-parent-jstack-core.git</developerConnection>
+        <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
+        <tag>HEAD</tag> <!-- Isso é necessário para SNAPSHOT funcionar corretamente -->
     </scm>
 
     <properties>
@@ -79,7 +79,6 @@
                     <releaseProfiles>release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <pushChanges>true</pushChanges>
-                    <useGitTagForNextVersion>true</useGitTagForNextVersion>
                     <scmCommentPrefix>[release]</scmCommentPrefix>
                 </configuration>
             </plugin>
