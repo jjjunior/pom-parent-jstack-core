@@ -1,10 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.jstack</groupId>
     <artifactId>pom-parent-jstack-core</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.5</version>
     <packaging>pom</packaging>
 
     <name>pom-parent-jstack-core</name>
@@ -48,7 +48,7 @@
         <connection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</connection>
         <developerConnection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</developerConnection>
         <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
-        <tag>HEAD</tag>
+        <tag>v0.0.5</tag>
     </scm>
 
     <properties>
