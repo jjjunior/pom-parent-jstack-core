@@ -33,26 +33,11 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      - name: Configure Maven settings
-        run: |
-          mkdir -p ~/.m2
-          echo '<settings>
-            <servers>
-              <server>
-                <id>your-repo-id</id>
-                <username>${{ secrets.REPO_USERNAME }}</username>
-                <password>${{ secrets.REPO_PASSWORD }}</password>
-              </server>
-            </servers>
-          </settings>' > ~/.m2/settings.xml
-
       - name: Executar Maven Release (main/master)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "github-actions@github.com"
-          mvn -B release:prepare release:perform -DscmCommentPrefix="[release] "
+        run: mvn -B release:prepare release:perform -DscmCommentPrefix="[release] "
 
       - name: Deploy SNAPSHOT (outras branches)
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
-        run: mvn deploy -B -DskipTests -X
+        run: mvn deploy -B -DskipTests
+
