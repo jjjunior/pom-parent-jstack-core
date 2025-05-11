@@ -4,7 +4,7 @@
 
     <groupId>br.com.jstack</groupId>
     <artifactId>pom-parent-jstack-core</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>pom-parent-jstack-core</name>
@@ -36,14 +36,19 @@
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core</url>
         </repository>
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core</url>
+        </snapshotRepository>
     </distributionManagement>
 
 
     <scm>
-        <connection>scm:git:git://github.com/jjjunior/pom-parent-jstack-core.git</connection>
-        <developerConnection>scm:git:ssh://github.com/jjjunior/pom-parent-jstack-core.git</developerConnection>
-        <url>https://github.com/jjjunior//pom-parent-jstack-core</url>
-        <tag>v0.0.2</tag>
+        <connection>scm:git:github-actions@github.com:jjjunior/pom-parent-jstack-core.git</connection>
+        <developerConnection>scm:git:github-actions@github.com:jjjunior/pom-parent-jstack-core.git</developerConnection>
+        <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
+        <tag>HEAD</tag> <!-- Isso é necessário para SNAPSHOT funcionar corretamente -->
     </scm>
 
     <properties>
@@ -74,7 +79,6 @@
                     <releaseProfiles>release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <pushChanges>true</pushChanges>
-                    <useGitTagForNextVersion>true</useGitTagForNextVersion>
                     <scmCommentPrefix>[release]</scmCommentPrefix>
                 </configuration>
             </plugin>
