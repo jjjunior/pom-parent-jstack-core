@@ -84,21 +84,4 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>ci</id>
-            <activation>
-                <property>
-                    <name>env.CI</name>
-                </property>
-            </activation>
-            <scm>
-                <connection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</connection>
-                <developerConnection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</developerConnection>
-                <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
-                <tag>HEAD</tag>
-            </scm>
-        </profile>
-    </profiles>
-
 </project>
