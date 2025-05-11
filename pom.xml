@@ -4,7 +4,7 @@
 
     <groupId>br.com.jstack</groupId>
     <artifactId>pom-parent-jstack-core</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>pom-parent-jstack-core</name>
