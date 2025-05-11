@@ -4,7 +4,7 @@
 
     <groupId>br.com.jstack</groupId>
     <artifactId>pom-parent-jstack-core</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>pom-parent-jstack-core</name>
@@ -32,21 +32,21 @@
 
     <distributionManagement>
         <repository>
-            <id>jstack-repository</id>
-            <name>JStack Releases</name>
-            <url>https://maven.pkg.github.com/jjjunior</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core</url>
         </repository>
         <snapshotRepository>
-            <id>jstack-repository</id>
-            <name>JStack Releases</name>
-            <url>https://maven.pkg.github.com/jjjunior</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core</url>
         </snapshotRepository>
     </distributionManagement>
 
 
     <scm>
-        <connection>scm:git:git@github.com:jjjunior/pom-parent-jstack-core.git</connection>
-        <developerConnection>scm:git:git@github.com:jjjunior/pom-parent-jstack-core.git</developerConnection>
+        <connection>scm:git:github-actions@github.com:jjjunior/pom-parent-jstack-core.git</connection>
+        <developerConnection>scm:git:github-actions@github.com:jjjunior/pom-parent-jstack-core.git</developerConnection>
         <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
         <tag>HEAD</tag> <!-- Isso é necessário para SNAPSHOT funcionar corretamente -->
     </scm>
