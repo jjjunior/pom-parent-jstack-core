@@ -38,7 +38,6 @@
                 <version>3.1.1</version>
                 <configuration>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
-                    <releaseProfiles>release</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <pushChanges>true</pushChanges>
                     <scmCommentPrefix>[release]</scmCommentPrefix>
@@ -47,7 +46,6 @@
 
         </plugins>
     </build>
-
 
     <distributionManagement>
         <repository>
