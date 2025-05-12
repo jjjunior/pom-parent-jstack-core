@@ -4,7 +4,7 @@
     <parent>
         <groupId>br.com.jstack</groupId>
         <artifactId>pom-parent-jstack-core</artifactId>
-        <version>0.0.11-SNAPSHOT</version>
+        <version>0.0.11</version>
     </parent>
 
     <name>pom-parent-jstack-spring-boot</name>
@@ -32,7 +32,7 @@
             <dependency>
                 <groupId>br.com.jstack</groupId>
                 <artifactId>pom-jstack-core-dependencies</artifactId>
-                <version>0.0.11-SNAPSHOT</version>
+                <version>0.0.11</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
