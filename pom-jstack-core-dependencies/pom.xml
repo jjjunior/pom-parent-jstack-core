@@ -4,12 +4,11 @@
     <parent>
         <groupId>br.com.jstack</groupId>
         <artifactId>pom-parent-jstack-core</artifactId>
-        <version>0.0.8-SNAPSHOT</version>
+        <version>0.0.9-SNAPSHOT</version>
     </parent>
 
-
-    <artifactId>pom-jstack-core-dependencies</artifactId>
     <name>pom-jstack-core-dependencies</name>
+    <artifactId>pom-jstack-core-dependencies</artifactId>
     <packaging>pom</packaging>
 
     <properties>

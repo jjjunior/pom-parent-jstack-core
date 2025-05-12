@@ -2,54 +2,13 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>br.com.jstack</groupId>
-    <artifactId>pom-parent-jstack-core</artifactId>
-    <version>0.0.8-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
     <name>pom-parent-jstack-core</name>
     <description>Framework Unified Maven Core Repository</description>
 
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://opensource.org/licenses/MIT</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>jjjunior</id>
-            <name>João José Maranhão Junior</name>
-            <url>https://github.com/jjjunior</url>
-        </developer>
-    </developers>
-
-    <modules>
-        <module>pom-jstack-core-dependencies</module>
-        <module>pom-parent-jstack-spring-boot</module>
-    </modules>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core</url>
-        </repository>
-        <snapshotRepository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-
-    <scm>
-        <connection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</connection>
-        <developerConnection>scm:git:https://github.com/jjjunior/pom-parent-jstack-core.git</developerConnection>
-        <url>https://github.com/jjjunior/pom-parent-jstack-core</url>
-        <tag>HEAD</tag>
-    </scm>
+    <groupId>br.com.jstack</groupId>
+    <artifactId>pom-parent-jstack-core</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.9-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,8 +17,13 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <springboot.version>3.4.5</springboot.version>
+        <github.user>jjjunior</github.user>
     </properties>
 
+    <modules>
+        <module>pom-jstack-core-dependencies</module>
+        <module>pom-parent-jstack-spring-boot</module>
+    </modules>
 
     <build>
         <plugins>
@@ -84,4 +48,39 @@
         </plugins>
     </build>
 
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/${github.user}/${project.artifactId}</url>
+        </repository>
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/${github.user}/${project.artifactId}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/${github.user}/${project.artifactId}.git</connection>
+        <developerConnection>scm:git:https://github.com/${github.user}/${project.artifactId}.git</developerConnection>
+        <url>https://github.com/${github.user}/${project.artifactId}</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>${github.user}</id>
+            <name>João José Maranhão Junior</name>
+            <url>https://github.com/${github.user}</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 </project>

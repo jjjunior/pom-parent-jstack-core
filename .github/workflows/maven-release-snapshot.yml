@@ -40,6 +40,6 @@ jobs:
 
       - name: Deploy SNAPSHOT (outras branches)
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
-        run: mvn deploy -B -DskipTests
+        run: mvn deploy -B -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
