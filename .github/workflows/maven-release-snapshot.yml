@@ -34,13 +34,12 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jjjunior/pom-parent-jstack-core.git
           mvn -B release:prepare release:perform \
             -DscmCommentPrefix="[release] " \
-            -Dscm.url=scm:git:https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jjjunior/pom-parent-jstack-core.git \
-            -Darguments="-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core"
+            -Dscm.url=scm:git:https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jjjunior/pom-parent-jstack-core.git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy SNAPSHOT (outras branches)
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
-        run: mvn deploy -B -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/jjjunior/pom-parent-jstack-core
+        run: mvn deploy -B
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

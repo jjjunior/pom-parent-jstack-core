@@ -51,12 +51,12 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/${github.user}/${project.artifactId}</url>
+            <url>https://maven.pkg.github.com/${github.user}/pom-parent-jstack-core</url>
         </repository>
         <snapshotRepository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/${github.user}/${project.artifactId}</url>
+            <url>https://maven.pkg.github.com/${github.user}/pom-parent-jstack-core</url>
         </snapshotRepository>
     </distributionManagement>
 
