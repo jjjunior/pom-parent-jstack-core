@@ -4,7 +4,7 @@
     <parent>
         <groupId>br.com.jstack</groupId>
         <artifactId>pom-parent-jstack-core</artifactId>
-        <version>0.0.12-SNAPSHOT</version>
+        <version>0.0.14-SNAPSHOT</version>
     </parent>
 
     <name>pom-parent-jstack-spring-boot</name>
@@ -16,11 +16,12 @@
         <module>pom-jstack-spring-boot-library</module>
         <module>pom-jstack-spring-boot-starter</module>
         <module>pom-jstack-spring-boot-atomic</module>
+        <module>jstack-spring-boot-autoconfigure</module>
     </modules>
     <properties>
         <enforcer.skip>true</enforcer.skip>
-        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
-        <lombok.version>1.18.32</lombok.version>
+        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+        <lombok.version>1.18.38</lombok.version>
         <mapstruct-processor.version>1.5.5.Final</mapstruct-processor.version>
         <spring-native.version>0.12.1</spring-native.version>
         <native-buildtools.version>0.9.23</native-buildtools.version>
@@ -32,7 +33,7 @@
             <dependency>
                 <groupId>br.com.jstack</groupId>
                 <artifactId>pom-jstack-core-dependencies</artifactId>
-                <version>0.0.12-SNAPSHOT</version>
+                <version>0.0.14-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
