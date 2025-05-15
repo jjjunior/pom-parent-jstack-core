@@ -13,10 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>br.com.jstack</groupId>
-            <artifactId>pom-parent-jstack-spring-boot-atomic-starter</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
         </dependency>
@@ -96,9 +92,6 @@
         </profile>
         <profile>
             <id>component</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
