@@ -4,7 +4,7 @@
     <parent>
         <groupId>br.com.jstack</groupId>
         <artifactId>pom-parent-jstack-core</artifactId>
-        <version>0.0.14-SNAPSHOT</version>
+        <version>0.0.15-SNAPSHOT</version>
     </parent>
 
     <name>pom-jstack-core-dependencies</name>
@@ -25,6 +25,9 @@
         <springdoc-openapi.version>2.8.8</springdoc-openapi.version>
 
         <spring-cloud-gcp-starter-data-firestore.version>5.1.0</spring-cloud-gcp-starter-data-firestore.version>
+        <spring-cloud-dependencies.version>2024.0.0</spring-cloud-dependencies.version>
+        <spring-cloud-gcp-dependencies.version>5.2.1</spring-cloud-gcp-dependencies.version>
+        <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
 
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <jackson-core.version>2.17.1</jackson-core.version>
@@ -60,7 +63,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Dependências Spring Boot -->
             <dependency>
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
@@ -70,45 +72,20 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>${spring-boot-starter-test.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>net.minidev</groupId>
-                        <artifactId>json-smart</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <!-- Spring Cloud (incluindo GCP) -->
-            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-context.version}</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>com.google.cloud</groupId>
                 <artifactId>spring-cloud-gcp-dependencies</artifactId>
-                <version>${spring-cloud-gcp-starter-data-firestore.version}</version>
+                <version>${spring-cloud-gcp-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-context</artifactId>
-                <version>${spring-cloud-context.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.security</groupId>
-                        <artifactId>spring-security-crypto</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
 
-            <!-- Bibliotecas de terceiros (MapStruct, Jackson, Gson, etc.) -->
             <!-- PRECISAM ESTAR JUNTAS -->
             <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
             <dependency>
@@ -116,6 +93,7 @@
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-common</artifactId>
@@ -136,17 +114,334 @@
                 <version>${mapstruct.version}</version>
             </dependency>
 
+            <!-- STARTERS -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>pom-parent-jstack-spring-boot-atomic-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>br.com.votorantim.atle.base</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-sbatch-starter</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-sboot-orch-stateless-starter</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-bff-starter</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-stat-starter</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-sboot-acl-starter</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-ws-starter</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+
+            <!-- CONNECTORS -->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-security</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-telemetry</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+
+            <!-- Trilha de Auditoria -->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-trilha-auditoria</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-trilha-auditoria-camel</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-trilha-auditoria-web</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-storage</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-orch-stateful</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-mensageria</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>br.com.votorantim.atle.base</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-firestore</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>br.com.votorantim.atle.base</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-cache</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+            <dependency>
+                <groupId>br.com.jstack</groupId>
+                <artifactId>spring-library-jstack-autoconfigure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>br.com.votorantim.atle.base</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-feature-toggle</artifactId>-->
+<!--                <version>${sbootlib-atle-base-feature-toggle.version}</version>-->
+<!--            </dependency>-->
+
+<!--            <dependency>-->
+<!--                <groupId>${project.groupId}</groupId>-->
+<!--                <artifactId>sbootlib-atle-base-ratelimit</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
+
+
+            <!--CVE-2025-24970-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-data-redis</artifactId>-->
+<!--                <version>${springboot.version}</version>-->
+<!--                <exclusions>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>io.netty</groupId>-->
+<!--                        <artifactId>netty-common</artifactId>-->
+<!--                    </exclusion>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>io.netty</groupId>-->
+<!--                        <artifactId>netty-handler</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+<!--            </dependency>-->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-common</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-handler</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot-starter-test.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>net.minidev</groupId>
+                        <artifactId>json-smart</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+                <version>${json-smart.version}</version>
+            </dependency>
+
+            <!-- OPEN TELEMETRY via MICROMETER -->
+
+
+<!--            &lt;!&ndash; Camel &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel</groupId>-->
+<!--                <artifactId>camel-bom</artifactId>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-spring-boot-bom</artifactId>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--                <version>${camel-version}</version> &lt;!&ndash; use the same version as your Camel core version &ndash;&gt;-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-spring-boot-starter</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel</groupId>-->
+<!--                <artifactId>camel-jackson</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-jackson-starter</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-opentelemetry-starter</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+            <!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
+<!--            <dependency>-->
+<!--                <groupId>com.nimbusds</groupId>-->
+<!--                <artifactId>nimbus-jose-jwt</artifactId>-->
+<!--                <version>${nimbus-jose-jwt.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; Ao usar swagger-java com Spring Boot, certifique-se de usar a seguinte dependência do Maven para ter suporte para configuração automática &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-swagger-java-starter</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-rest-swagger-starter</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-rest-openapi-starter</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel.springboot</groupId>-->
+<!--                <artifactId>camel-http-starter</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel</groupId>-->
+<!--                <artifactId>camel-rest-openapi</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.junit-pioneer</groupId>-->
+<!--                <artifactId>junit-pioneer</artifactId>-->
+<!--                <version>${junit-pioneer.version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--                <artifactId>jackson-core</artifactId>-->
+<!--                <version>${jackson-core.version}</version>-->
+<!--            </dependency>-->
+
+            <!-- Test -->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.camel</groupId>-->
+<!--                <artifactId>camel-test-spring-junit5</artifactId>-->
+<!--                <version>${camel-version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>${jakarta.persistence-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-inline</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.openapitools</groupId>
                 <artifactId>jackson-databind-nullable</artifactId>
                 <version>${jackson-databind-nullable.version}</version>
             </dependency>
 
+            <!-- BFF -->
+<!--            <dependency>-->
+<!--                <groupId>br.com.votorantim.intb.base</groupId>-->
+<!--                <artifactId>sbootlib-intb-base-crypt</artifactId>-->
+<!--                <version>${intb.crypt.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>br.com.votorantim.arqt</groupId>-->
+<!--                <artifactId>sboot-arqt-base-security-jwt</artifactId>-->
+<!--                <version>${jwt.version}</version>-->
+<!--            </dependency>-->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
             </dependency>
+
+            <!-- Veracode -->
+            <dependency>
+                <groupId>com.veracode.annotation</groupId>
+                <artifactId>VeracodeAnnotations</artifactId>
+                <version>${veracodeAnnotations.version}</version>
+            </dependency>
+
+            <!-- Camunda Interface -->
+<!--            <dependency>-->
+<!--                <groupId>org.camunda.bpm.springboot</groupId>-->
+<!--                <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>-->
+<!--                <version>${camunda-bpm-spring-boot-starter-webapp.version}</version>-->
+<!--            </dependency>-->
+
+            <!-- Firestore -->
+<!--            <dependency>-->
+<!--                <groupId>com.google.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-gcp-starter-data-firestore</artifactId>-->
+<!--                <version>${spring-cloud-gcp-starter-data-firestore.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; Storage &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.google.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-gcp-starter-storage</artifactId>-->
+<!--                <version>${spring-cloud-gcp-starter-storage.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.google.apis</groupId>-->
+<!--                <artifactId>google-api-services-drive</artifactId>-->
+<!--                <version>${google-api-services-drive.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.google.apis</groupId>-->
+<!--                <artifactId>google-api-services-driveactivity</artifactId>-->
+<!--                <version>${google-api-services-driveactivity.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud.stream.app</groupId>-->
+<!--                <artifactId>app-starters-micrometer-common</artifactId>-->
+<!--                <version>${app-starters-micrometer-common.version}</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>commons-io</groupId>
@@ -164,60 +459,76 @@
                 <version>${javax.annotation-api.version}</version>
             </dependency>
 
+            <!-- GRPC -->
+<!--            <dependency>-->
+<!--                <groupId>com.google.protobuf</groupId>-->
+<!--                <artifactId>protobuf-java</artifactId>-->
+<!--                <version>${protobuf-java.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>io.grpc</groupId>-->
+<!--                <artifactId>grpc-netty</artifactId>-->
+<!--                <version>${grpc-protobuf.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>io.grpc</groupId>-->
+<!--                <artifactId>grpc-protobuf</artifactId>-->
+<!--                <version>${grpc-protobuf.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>io.grpc</groupId>-->
+<!--                <artifactId>grpc-stub</artifactId>-->
+<!--                <version>${grpc-protobuf.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>io.grpc</groupId>-->
+<!--                <artifactId>grpc-testing</artifactId>-->
+<!--                <version>${grpc-testing.version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.jeasy</groupId>-->
+<!--                <artifactId>easy-random-core</artifactId>-->
+<!--                <version>${easy-random-core.version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
+
+            <!-- VULNERABILITIES -->
+            <!-- CVE-2024-38821 -->
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
                 <version>${spring-security-web.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-crypto</artifactId>
-                <version>${spring-security-crypto.version}</version>
-            </dependency>
-
+            <!-- CVE-2024-52316 -->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
                 <version>${tomcat-embed-core.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>jakarta.persistence</groupId>
-                <artifactId>jakarta.persistence-api</artifactId>
-                <version>${jakarta.persistence-api.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.bucket4j</groupId>-->
+<!--                <artifactId>bucket4j-core</artifactId>-->
+<!--                <version>${bucket4j.version}</version>-->
+<!--            </dependency>-->
 
-            <!-- Dependências específicas do projeto -->
+            <!-- https://spring.io/security/cve-2025-22228 -->
             <dependency>
-                <groupId>br.com.jstack</groupId>
-                <artifactId>pom-jstack-spring-boot-starter</artifactId>
-                <version>0.0.14-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
-                <groupId>br.com.jstack</groupId>
-                <artifactId>jstack-spring-boot-autoconfigure</artifactId>
-                <version>0.0.14-SNAPSHOT</version>
-            </dependency>
-
-            <!-- Dependências de teste -->
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-inline</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-context</artifactId>
+                <version>${spring-cloud-context.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.security</groupId>
+                        <artifactId>spring-security-crypto</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jeasy</groupId>
-                <artifactId>easy-random-core</artifactId>
-                <version>${easy-random-core.version}</version>
-                <scope>test</scope>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-crypto</artifactId>
+                <version>${spring-security-crypto.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

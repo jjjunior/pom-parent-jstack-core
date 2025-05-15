@@ -5,14 +5,14 @@
     <parent>
         <groupId>br.com.jstack</groupId>
         <artifactId>pom-parent-jstack-spring-boot</artifactId>
-        <version>0.0.14-SNAPSHOT</version>
+        <version>0.0.15-SNAPSHOT</version>
     </parent>
 
-    <name>jstack-spring-boot-autoconfigure</name>
-    <description>jstack-spring-boot-autoconfigure</description>
+    <name>spring-library-jstack-autoconfigure</name>
+    <description>spring-library-jstack-autoconfigure</description>
 
     <groupId>br.com.jstack</groupId>
-    <artifactId>jstack-spring-boot-autoconfigure</artifactId>
+    <artifactId>spring-library-jstack-autoconfigure</artifactId>
 
     <dependencies>
         <dependency>

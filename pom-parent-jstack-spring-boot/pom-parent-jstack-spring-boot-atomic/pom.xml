@@ -3,19 +3,18 @@
     <parent>
         <groupId>br.com.jstack</groupId>
         <artifactId>pom-parent-jstack-spring-boot</artifactId>
-        <version>0.0.14-SNAPSHOT</version>
+        <version>0.0.15-SNAPSHOT</version>
     </parent>
 
     <name>pom-jstack-spring-boot-atomic</name>
-    <artifactId>pom-jstack-spring-boot-atomic</artifactId>
+    <artifactId>pom-parent-jstack-spring-boot-atomic</artifactId>
     <groupId>br.com.jstack</groupId>
     <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
             <groupId>br.com.jstack</groupId>
-            <artifactId>pom-jstack-spring-boot-starter</artifactId>
-            <version>0.0.14-SNAPSHOT</version>
+            <artifactId>pom-parent-jstack-spring-boot-atomic-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -53,6 +52,26 @@
 
 
     <profiles>
+        <profile>
+            <id>jenkins-build</id>
+            <activation>
+                <property>
+                    <name>env.BUILD_ID</name>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>br.com.jstack</groupId>
+                    <artifactId>pom-jstack-spring-boot-starter</artifactId>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+            </dependencies>
+        </profile>
         <profile>
             <id>local</id>
             <dependencies>

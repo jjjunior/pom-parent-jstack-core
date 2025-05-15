@@ -4,7 +4,7 @@
     <parent>
         <groupId>br.com.jstack</groupId>
         <artifactId>pom-parent-jstack-core</artifactId>
-        <version>0.0.14-SNAPSHOT</version>
+        <version>0.0.15-SNAPSHOT</version>
     </parent>
 
     <name>pom-parent-jstack-spring-boot</name>
@@ -13,10 +13,10 @@
 
     <modules>
         <!-- STARTERS -->
-        <module>pom-jstack-spring-boot-library</module>
-        <module>pom-jstack-spring-boot-starter</module>
-        <module>pom-jstack-spring-boot-atomic</module>
-        <module>jstack-spring-boot-autoconfigure</module>
+        <module>pom-parent-jstack-spring-boot-atomic-starter</module>
+        <module>pom-parent-jstack-spring-boot-library</module>
+        <module>pom-parent-jstack-spring-boot-atomic</module>
+        <module>spring-library-jstack-autoconfigure</module>
     </modules>
     <properties>
         <enforcer.skip>true</enforcer.skip>
@@ -33,7 +33,7 @@
             <dependency>
                 <groupId>br.com.jstack</groupId>
                 <artifactId>pom-jstack-core-dependencies</artifactId>
-                <version>0.0.14-SNAPSHOT</version>
+                <version>${project.parent.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
