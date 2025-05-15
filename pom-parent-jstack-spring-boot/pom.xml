@@ -14,7 +14,6 @@
     <modules>
         <!-- STARTERS -->
         <module>pom-parent-jstack-spring-boot-atomic-starter</module>
-        <module>pom-parent-jstack-spring-boot-library</module>
         <module>pom-parent-jstack-spring-boot-atomic</module>
         <module>spring-library-jstack-autoconfigure</module>
     </modules>
